@@ -15,4 +15,11 @@ const maxPage = 1;
 const page = 1;
 const searchQuery = "";
 
-createCharacterCard();
+const character = {
+  name: "Rick Sanchez",
+  status: "alive",
+  source: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+};
+
+const newCharacter = createCharacterCard(character);
+cardContainer.append(newCharacter);

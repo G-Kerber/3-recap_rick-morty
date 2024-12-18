@@ -23,3 +23,18 @@ const character = {
 
 const newCharacter = createCharacterCard(character);
 cardContainer.append(newCharacter);
+
+async function fetchCharacters() {
+  try {
+    cardContainer.innerHTML = "";
+    const response = await fetch(
+      `https://rickandmortyapi.com/api/character?page=${page}`
+    );
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (Error) {
+    console.error("Error: Fetch failed!", Error);
+  }
+}
+fetchCharacters();

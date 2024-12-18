@@ -32,6 +32,17 @@ async function fetchCharacters() {
     );
     const data = await response.json();
     console.log(data);
+
+    const characters = data.results;
+    characters.forEach((character) => {
+      const characterCard = createCharacterCard({
+        name: character.name,
+        status: character.status,
+        source: character.image,
+      });
+      cardContainer.append(characterCard);
+    });
+    console.log(characters);
     return data;
   } catch (Error) {
     console.error("Error: Fetch failed!", Error);

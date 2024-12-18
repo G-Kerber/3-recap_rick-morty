@@ -31,7 +31,6 @@ async function fetchCharacters() {
       `https://rickandmortyapi.com/api/character?page=${page}`
     );
     const data = await response.json();
-    console.log(data);
 
     const characters = data.results;
     characters.forEach((character) => {
@@ -42,8 +41,6 @@ async function fetchCharacters() {
       });
       cardContainer.append(characterCard);
     });
-    console.log(characters);
-    return data;
   } catch (Error) {
     console.error("Error: Fetch failed!", Error);
   }

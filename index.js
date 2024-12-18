@@ -1,3 +1,5 @@
+import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
+
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -12,3 +14,12 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const maxPage = 1;
 const page = 1;
 const searchQuery = "";
+
+const character = {
+  name: "Rick Sanchez",
+  status: "alive",
+  source: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+};
+
+const newCharacter = createCharacterCard(character);
+cardContainer.append(newCharacter);

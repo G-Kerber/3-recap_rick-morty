@@ -30,7 +30,6 @@ async function fetchCharacters() {
     // Part 2: Create Characters
     characters.forEach((character) => {
       let occurrence = character.episode.length;
-      console.log(occurrence);
       const characterCard = createCharacterCard({
         source: character.image,
         name: character.name,

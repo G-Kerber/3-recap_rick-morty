@@ -15,24 +15,19 @@ const maxPage = 1;
 const page = 1;
 const searchQuery = "";
 
-const character = {
-  name: "Rick Sanchez",
-  status: "alive",
-  source: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-};
-
-const newCharacter = createCharacterCard(character);
-cardContainer.append(newCharacter);
+// --- Code for revolve Challenge ---
 
 async function fetchCharacters() {
   try {
+    // Part 1: fetch Characters
     cardContainer.innerHTML = "";
     const response = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}`
     );
     const data = await response.json();
-
     const characters = data.results;
+
+    // Part 2: Create Characters
     characters.forEach((character) => {
       const characterCard = createCharacterCard({
         name: character.name,
@@ -45,4 +40,5 @@ async function fetchCharacters() {
     console.error("Error: Fetch failed!", Error);
   }
 }
+
 fetchCharacters();

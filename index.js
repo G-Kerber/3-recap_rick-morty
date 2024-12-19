@@ -30,9 +30,11 @@ async function fetchCharacters() {
     // Part 2: Create Characters
     characters.forEach((character) => {
       const characterCard = createCharacterCard({
+        source: character.image,
         name: character.name,
         status: character.status,
-        source: character.image,
+        type: character.type,
+        occurrence: character.episode,
       });
       cardContainer.append(characterCard);
     });

@@ -13,11 +13,11 @@ export function createCharacterCard(character) {
           <div class="card__content">
             <h2 class="card__title">${character.name}</h2>
             <dl class="card__info">
-              <dt class="card__info-title">Status</dt>
+              <dt class="card__info-title">${character.status}</dt>
               <dd class="card__info-description">Alive</dd>
-              <dt class="card__info-title">Type</dt>
+              <dt class="card__info-title">${character.type}</dt>
               <dd class="card__info-description"></dd>
-              <dt class="card__info-title">Occurrences</dt>
+              <dt class="card__info-title">${character.episode}</dt>
               <dd class="card__info-description">51</dd>
             </dl>
           </div>

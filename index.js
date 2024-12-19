@@ -1,4 +1,4 @@
-import {createCharacterCard} from "./components/CharacterCard/CharacterCard.js";
+import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -13,7 +13,7 @@ const pagination = document.querySelector('[data-js="pagination"]');
 // States
 let maxPage = 1;
 let page = 1;
-const searchQuery = "";
+let searchQuery = "";
 
 // --- Code for revolve Challenge ---
 
@@ -22,7 +22,7 @@ async function fetchCharacters() {
     // Part 1: fetch Characters
     cardContainer.innerHTML = "";
     const response = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${page}`
+      `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`
     );
     const data = await response.json();
     const characters = data.results;
@@ -62,6 +62,14 @@ prevButton.addEventListener("click", () => {
   } else {
     page = maxPage;
   }
+  fetchCharacters();
+});
+
+searchBarContainer.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const searchInput = searchBar.querySelector(".search-bar__input");
+  searchQuery = searchInput.value;
   fetchCharacters();
 });
 

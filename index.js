@@ -12,7 +12,7 @@ const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
 let maxPage = 1;
-let page = 41;
+let page = 1;
 const searchQuery = "";
 
 // --- Code for revolve Challenge ---

@@ -1,4 +1,9 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
+import { createNavPagination } from "./components/NavPagination/NavPagination.js";
+import {
+  createNavButtonNext,
+  createNavButtonPrev,
+} from "./components/NavButton/NavButton.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -29,7 +34,10 @@ async function fetchCharacters() {
 
     maxPage = data.info.pages;
 
-    pagination.textContent = `${page} / ${maxPage}`;
+    //pagination.textContent = `${page} / ${maxPage}`;
+    if (pagination) {
+      pagination.textContent = `${page} / ${maxPage}`;
+    }
 
     // Part 2: Create Characters
     characters.forEach((character) => {
@@ -42,28 +50,31 @@ async function fetchCharacters() {
       });
       cardContainer.append(characterCard);
     });
+    navigation.append(createNavButtonPrev());
+    navigation.append(createNavPagination());
+    navigation.append(createNavButtonNext());
+
+    nextButton.addEventListener("click", () => {
+      if (page < maxPage) {
+        page++;
+      } else {
+        page = 1;
+      }
+      fetchCharacters();
+    });
+
+    prevButton.addEventListener("click", () => {
+      if (page > 1) {
+        page--;
+      } else {
+        page = maxPage;
+      }
+      fetchCharacters();
+    });
   } catch (Error) {
     console.error("Error: Fetch failed!", Error);
   }
 }
-
-nextButton.addEventListener("click", () => {
-  if (page < maxPage) {
-    page++;
-  } else {
-    page = 1;
-  }
-  fetchCharacters();
-});
-
-prevButton.addEventListener("click", () => {
-  if (page > 1) {
-    page--;
-  } else {
-    page = maxPage;
-  }
-  fetchCharacters();
-});
 
 searchBarContainer.addEventListener("submit", (event) => {
   event.preventDefault();

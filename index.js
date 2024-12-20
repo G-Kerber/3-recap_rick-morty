@@ -1,6 +1,7 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
 import { createSpanElement } from "./components/NavPagination/NavPagination.js";
 import { Button } from "./components/NavButton/NavButton.js";
+import { createSearchBar } from "./components/SearchBar/SearchBar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -75,6 +76,9 @@ const prevButton = Button(
 const pagination = createSpanElement("", "navigation__pagination");
 
 navigation.append(prevButton, pagination, nextButton);
+
+const form = createSearchBar();
+searchBarContainer.append(form);
 
 searchBarContainer.addEventListener("submit", (event) => {
   event.preventDefault();

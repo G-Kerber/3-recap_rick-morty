@@ -1,14 +1,13 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
+import { createSpanElement } from "./components/NavPagination/NavPagination.js";
+import { Button } from "./components/NavButton/NavButton.js";
+import { createSearchBar } from "./components/SearchBar/SearchBar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
-const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
-const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
-const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
 let maxPage = 1;
@@ -47,30 +46,44 @@ async function fetchCharacters() {
   }
 }
 
-nextButton.addEventListener("click", () => {
-  if (page < maxPage) {
-    page++;
-  } else {
-    page = 1;
-  }
-  fetchCharacters();
-});
+const nextButton = Button(
+  "Next",
+  () => {
+    if (page < maxPage) {
+      page++;
+    } else {
+      page = 1;
+    }
+    fetchCharacters();
+  },
+  "button--next"
+);
 
-prevButton.addEventListener("click", () => {
-  if (page > 1) {
-    page--;
-  } else {
-    page = maxPage;
-  }
-  fetchCharacters();
-});
+const prevButton = Button(
+  "Previous",
+  () => {
+    if (page > 1) {
+      page--;
+    } else {
+      page = maxPage;
+    }
+    fetchCharacters();
+  },
+  "button--prev"
+);
 
-searchBarContainer.addEventListener("submit", (event) => {
+const pagination = createSpanElement("", "navigation__pagination");
+
+navigation.append(prevButton, pagination, nextButton);
+
+const searchBar = createSearchBar((event) => {
   event.preventDefault();
 
-  const searchInput = searchBar.querySelector(".search-bar__input");
-  searchQuery = searchInput.value;
+  searchQuery = event.target.elements.query.value;
+  page = 1;
   fetchCharacters();
 });
+
+searchBarContainer.append(searchBar);
 
 fetchCharacters();

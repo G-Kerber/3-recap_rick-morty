@@ -7,7 +7,6 @@ const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
-const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
@@ -77,10 +76,7 @@ const pagination = createSpanElement("", "navigation__pagination");
 
 navigation.append(prevButton, pagination, nextButton);
 
-const form = createSearchBar();
-searchBarContainer.append(form);
-
-searchBarContainer.addEventListener("submit", (event) => {
+const searchBar = createSearchBar((event) => {
   event.preventDefault();
 
   // Variante 1
@@ -91,5 +87,7 @@ searchBarContainer.addEventListener("submit", (event) => {
   page = 1;
   fetchCharacters();
 });
+
+searchBarContainer.append(searchBar);
 
 fetchCharacters();

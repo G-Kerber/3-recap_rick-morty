@@ -1,9 +1,11 @@
-export function createSearchBar() {
-  const form = document.createElement("div");
+export function createSearchBar(onSubmit) {
+  const form = document.createElement("form");
+
+  form.classList.add("search-bar");
+  form.setAttribute("data-js", "search-bar");
+  form.setAttribute("action", "");
 
   form.innerHTML = `
-
-<form action="" class="search-bar" data-js="search-bar">
 <input
   name="query"
   class="search-bar__input"
@@ -18,7 +20,9 @@ export function createSearchBar() {
     alt=""
   />
 </button>
-</form>
 `;
+
+  form.addEventListener("submit", onSubmit);
+
   return form;
 }

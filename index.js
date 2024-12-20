@@ -68,8 +68,12 @@ prevButton.addEventListener("click", () => {
 searchBarContainer.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const searchInput = searchBar.querySelector(".search-bar__input");
-  searchQuery = searchInput.value;
+  // Variante 1
+  //const searchInput = searchBar.querySelector(".search-bar__input");
+  //searchQuery = searchInput.value;
+  // Varinate 2
+  searchQuery = event.target.elements.query.value;
+  page = 1;
   fetchCharacters();
 });
 

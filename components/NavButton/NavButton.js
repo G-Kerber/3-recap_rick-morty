@@ -1,7 +1,7 @@
 export function createNavButtonPrev() {
   const prevButton = document.createElement("button");
 
-  prevButton.classList.add("button--prev");
+  prevButton.classList.add("button", "button--prev");
   prevButton.setAttribute("data-js", "button-prev");
   prevButton.textContent = "previous";
 
@@ -11,7 +11,7 @@ export function createNavButtonPrev() {
 export function createNavButtonNext() {
   const nextButton = document.createElement("button");
 
-  nextButton.classList.add("button--next");
+  nextButton.classList.add("buton", "button--next");
   nextButton.setAttribute("data-js", "button-next");
   nextButton.textContent = "next";
 

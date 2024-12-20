@@ -11,6 +11,11 @@ const searchBarContainer = document.querySelector(
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
+
+navigation.append(createNavButtonPrev());
+navigation.append(createNavPagination());
+navigation.append(createNavButtonNext());
+
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
@@ -34,10 +39,7 @@ async function fetchCharacters() {
 
     maxPage = data.info.pages;
 
-    //pagination.textContent = `${page} / ${maxPage}`;
-    if (pagination) {
-      pagination.textContent = `${page} / ${maxPage}`;
-    }
+    pagination.textContent = `${page} / ${maxPage}`;
 
     // Part 2: Create Characters
     characters.forEach((character) => {
@@ -50,14 +52,12 @@ async function fetchCharacters() {
       });
       cardContainer.append(characterCard);
     });
-    navigation.append(createNavButtonPrev());
-    navigation.append(createNavPagination());
-    navigation.append(createNavButtonNext());
   } catch (Error) {
     console.error("Error: Fetch failed!", Error);
   }
 }
 
+console.log("step 1");
 nextButton.addEventListener("click", () => {
   if (page < maxPage) {
     page++;
@@ -67,6 +67,7 @@ nextButton.addEventListener("click", () => {
   fetchCharacters();
 });
 
+console.log("step 2");
 prevButton.addEventListener("click", () => {
   if (page > 1) {
     page--;

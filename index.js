@@ -79,10 +79,6 @@ navigation.append(prevButton, pagination, nextButton);
 const searchBar = createSearchBar((event) => {
   event.preventDefault();
 
-  // Variante 1
-  //const searchInput = searchBar.querySelector(".search-bar__input");
-  //searchQuery = searchInput.value;
-  // Varinate 2
   searchQuery = event.target.elements.query.value;
   page = 1;
   fetchCharacters();

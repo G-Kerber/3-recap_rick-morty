@@ -1,9 +1,8 @@
-export function createNavPagination() {
-  const pagination = document.createElement("span");
+export function createSpanElement(labelcontent, customClass) {
+  const spanElement = document.createElement("span");
 
-  pagination.classList.add("navigation__pagination");
-  pagination.setAttribute("data-js", "pagination");
-  pagination.textContent = "";
+  spanElement.classList.add(customClass);
+  spanElement.textContent = labelcontent;
 
-  return pagination;
+  return spanElement;
 }

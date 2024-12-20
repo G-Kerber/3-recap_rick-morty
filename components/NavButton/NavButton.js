@@ -1,19 +1,11 @@
-export function createNavButtonPrev() {
-  const prevButton = document.createElement("button");
+export function Button(buttonContent, onClick, customClass) {
+  const button = document.createElement("button");
 
-  prevButton.classList.add("button", "button--prev");
-  prevButton.setAttribute("data-js", "button-prev");
-  prevButton.textContent = "previous";
+  console.log(customClass);
+  button.classList.add("button", customClass);
+  button.textContent = buttonContent;
 
-  return prevButton;
-}
+  button.addEventListener("click", onClick);
 
-export function createNavButtonNext() {
-  const nextButton = document.createElement("button");
-
-  nextButton.classList.add("buton", "button--next");
-  nextButton.setAttribute("data-js", "button-next");
-  nextButton.textContent = "next";
-
-  return nextButton;
+  return button;
 }

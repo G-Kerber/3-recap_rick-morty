@@ -53,28 +53,28 @@ async function fetchCharacters() {
     navigation.append(createNavButtonPrev());
     navigation.append(createNavPagination());
     navigation.append(createNavButtonNext());
-
-    nextButton.addEventListener("click", () => {
-      if (page < maxPage) {
-        page++;
-      } else {
-        page = 1;
-      }
-      fetchCharacters();
-    });
-
-    prevButton.addEventListener("click", () => {
-      if (page > 1) {
-        page--;
-      } else {
-        page = maxPage;
-      }
-      fetchCharacters();
-    });
   } catch (Error) {
     console.error("Error: Fetch failed!", Error);
   }
 }
+
+nextButton.addEventListener("click", () => {
+  if (page < maxPage) {
+    page++;
+  } else {
+    page = 1;
+  }
+  fetchCharacters();
+});
+
+prevButton.addEventListener("click", () => {
+  if (page > 1) {
+    page--;
+  } else {
+    page = maxPage;
+  }
+  fetchCharacters();
+});
 
 searchBarContainer.addEventListener("submit", (event) => {
   event.preventDefault();

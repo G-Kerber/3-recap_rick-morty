@@ -1,4 +1,4 @@
-@import "components/CharacterCard/CharacterCard.css";
+/* @import "components/CharacterCard/CharacterCard.css";
 @import "components/SearchBar/SearchBar.css";
 @import "components/NavButton/NavButton.css";
 @import "components/NavPagination/NavPagination.css";
@@ -29,4 +29,211 @@ main {
 
 .title {
   padding: 10px 0;
+} */
+
+[data-js="card-container"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  list-style: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+li.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #202329;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card__image-container {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card__image-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+}
+
+.card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: linear-gradient(180deg, #202329 0%, #1a1c20 100%);
+}
+
+.card__title {
+  color: #97ce4c;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+
+.card__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 200px;
+  height: 3px;
+  background: #97ce4c;
+  box-shadow: 0 0 10px rgba(151, 206, 76, 0.5);
+}
+
+.card__info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 0.8rem;
+  margin: 0;
+}
+
+.card__info-title {
+  color: #97ce4c;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card__info-description {
+  color: #ffffff;
+  margin: -1px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  [data-js="card-container"] {
+    grid-template-columns: repeat(1, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .card__content {
+    padding: 0.8rem;
+  }
+
+  .card__title {
+    font-size: 1rem;
+  }
+}
+
+body {
+  background: #1a1c20;
+  background-image: radial-gradient(
+      circle at top right,
+      rgba(151, 206, 76, 0.1) 0%,
+      transparent 90%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(151, 206, 76, 0.1) 0%,
+      transparent 90%
+    );
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.button {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #97ce4c;
+  background: #202329;
+  color: #97ce4c;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(151, 206, 76, 0.2);
+}
+
+.button:hover {
+  background: #97ce4c;
+  color: #202329;
+  box-shadow: 0 0 20px rgba(151, 206, 76, 0.4);
+  transform: translateY(-2px);
+}
+
+.navigation__pagination {
+  color: #97ce4c;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background: #202329;
+  border-radius: 8px;
+  border: 2px solid #97ce4c;
+  min-width: 80px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(151, 206, 76, 0.2);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, #97ce4c, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.1;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .navigation__pagination {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    min-width: 60px;
+  }
 }
